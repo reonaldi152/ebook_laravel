@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <body class="font-[Poppins]">
+    <body class="font-[Poppins] mb-44">
         <x-navbar />
 
         <header class="flex flex-col items-center gap-[50px] mt-[70px]">
@@ -11,14 +11,8 @@
                 <h1 id="Title" class="font-bold text-[46px] leading-[60px] text-center two-lines">{{ $ebook->title }}</h1>
                 <div class="flex items-center justify-center gap-[70px]">
                     <a id="Author" href="#" class="w-fit h-fit">
-                        <div class="flex items-center gap-3">
-                            {{-- <div class="w-10 h-10 rounded-full overflow-hidden">
-                                <img src="{{ asset('assets/images/photos/photo3.png') }}" class="object-cover w-full h-full"
-                                    alt="avatar">
-                            </div> --}}
-                            <div class="flex flex-col">
-                                <p class="font-semibold text-sm leading-[21px]">{{ $ebook->author }}</p>
-                            </div>
+                        <div class="flex flex-col">
+                            <p class="font-semibold text-sm leading-[21px]">{{ $ebook->author }}</p>
                         </div>
                     </a>
                 </div>
@@ -29,34 +23,48 @@
             </div>
         </header>
 
-        <section id="Article-container" class="max-w-[1130px] mx-auto flex flex-col gap-20 mt-[50px]">
+        <section id="Article-container" class="max-w-[1130px] mx-auto flex flex-col mt-[50px]">
+            <div class="mt-6 flex gap-4">
+                <!-- Download Button -->
+                <a href="{{ asset('storage/' . $ebook->pdf_file) }}" class="text-blue-500 hover:underline" download>
+                    Download PDF
+                </a>
+
+                <!-- View in New Tab Button -->
+                <a href="{{ asset('storage/' . $ebook->pdf_file) }}" target="_blank" class="text-blue-500 hover:underline">
+                    Lihat PDF di Tab Baru
+                </a>
+            </div>
+
             <article id="Content-wrapper">
                 <p>{{ $ebook->description }}</p> <!-- Deskripsi atau isi ebook -->
 
                 <!-- Embed PDF in the page -->
                 <div class="pdf-viewer mt-6">
-                    <iframe src="{{ asset('storage/' . $ebook->pdf_file) }}" width="100%" height="600px"
+                    <iframe class="pdf-frame" src="{{ asset('storage/' . $ebook->pdf_file) }}" width="100%" height="600px"
                         style="border: none;">
                         Your browser does not support iframes.
                     </iframe>
                 </div>
 
-                <div class="mt-6 flex gap-4">
-                    <!-- Download Button -->
-                    <a href="{{ asset('storage/' . $ebook->pdf_file) }}" class="text-blue-500 hover:underline" download>
-                        Download PDF
-                    </a>
-
-                    <!-- View in New Tab Button -->
-                    <a href="{{ asset('storage/' . $ebook->pdf_file) }}" target="_blank"
-                        class="text-blue-500 hover:underline">
-                        View PDF in New Tab
-                    </a>
+                <!-- Message for mobile users -->
+                <div class="pdf-mobile-message mt-6 hidden text-center bg-gray-100 p-4 rounded-lg">
+                    <p class="text-gray-700">Penampil PDF tidak didukung di perangkat mobile. Silakan gunakan tombol di atas
+                        untuk mengunduh atau melihat PDF di tab baru.</p>
                 </div>
             </article>
         </section>
 
         <script src="js/two-lines-text.js"></script>
+        <script>
+            // Media query to check if the viewport width is less than 768px (mobile)
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                // Hide the iframe
+                document.querySelector('.pdf-frame').style.display = 'none';
+                // Show the mobile message
+                document.querySelector('.pdf-mobile-message').style.display = 'block';
+            }
+        </script>
     </body>
 @endsection
 

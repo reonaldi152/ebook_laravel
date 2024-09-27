@@ -15,7 +15,7 @@
                         <div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
                         </div>
                         <div
-                            class="card-detail max-w-[1130px] w-full mx-auto flex items-end justify-between pb-10 relative z-20">
+                            class="card-detail max-w-[1130px] w-full flex items-end justify-between pb-10 relative z-20 mx-5 lg:mx-64">
                             <div class="flex flex-col gap-[10px] max-w-full text-center md:text-left">
                                 <p class="text-white">Featured</p>
                                 <a href="{{ $news->link }}"
@@ -43,9 +43,9 @@
         <!-- Up-to-date Section -->
         {{-- <section id="Up-to-date" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
-                <h2 class="font-bold text-[26px] leading-[39px] text-center sm:text-left">
-                    Latest Hot News <br />
-                    Good for Curiousity
+                  <h2 class="font-bold text-[26px] leading-[39px]">
+                    Modul Digital<br />
+                    Toleransi beragama 
                 </h2>
             </div>
             <div
@@ -73,18 +73,18 @@
 
         </section> --}}
 
-        <section id="Up-to-date" class="max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]">
-            <div class="flex justify-between items-center">
+        <section id="Up-to-date" class="mx-2.5 lg:mx-64 mt-[70px]">
+            <div class="">
                 <h2 class="font-bold text-[26px] leading-[39px]">
-                    Modul DIgital<br />
+                    Modul Digital<br />
                     Toleransi beragama
                 </h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-y-[30px] gap-x-[30px] mt-[70px]">
+            <div class="grid lg:grid-cols-3 gap-5 mt-[30px]">
                 @foreach ($ebooks as $ebook)
                     <a href="{{ route('ebooks.show', $ebook->id) }}" class="card-news">
                         <div
-                            class="rounded-[20px] ring-1 ring-[#EEF0F7] p-[26px_20px] flex flex-col gap-4 hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 bg-white">
+                            class="rounded-[20px] ring-1 ring-[#EEF0F7]  p-[26px_20px] hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 bg-white">
                             <div
                                 class="thumbnail-container w-full h-[200px] rounded-[20px] flex shrink-0 overflow-hidden relative">
                                 <img src="{{ asset('storage/' . $ebook->cover_image) }}" class="object-cover w-full h-full"
@@ -96,8 +96,6 @@
                             </div>
                         </div>
                     </a>
-                    <br>
-                    <br>
                 @endforeach
             </div>
         </section>
@@ -112,6 +110,7 @@
 @endpush
 
 @push('after-scripts')
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="{{ asset('customjs/two-lines-text.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

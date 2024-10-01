@@ -41,16 +41,16 @@
 
                 <!-- Embed PDF in the page -->
                 <div class="pdf-viewer mt-6">
-                    <iframe class="pdf-frame" src="{{ asset('storage/' . $ebook->pdf_file) }}" width="100%" height="600px"
+                    {{-- <iframe class="pdf-frame" src="{{ asset('storage/' . $ebook->pdf_file) }}" width="100%" height="600px"
                         style="border: none;">
                         Your browser does not support iframes.
+                    </iframe> --}}
+                    <iframe
+                        src="https://docs.google.com/viewer?url={{ asset('storage/' . $ebook->pdf_file) }}&embedded=true"
+                        width="100%" height="600px" style="border: none;">
+                        Your browser does not support iframes.
                     </iframe>
-                </div>
 
-                <!-- Message for mobile users -->
-                <div class="pdf-mobile-message mt-6 hidden text-center bg-gray-100 p-4 rounded-lg">
-                    <p class="text-gray-700">Penampil PDF tidak didukung di perangkat mobile. Silakan gunakan tombol di atas
-                        untuk mengunduh atau melihat PDF di tab baru.</p>
                 </div>
             </article>
         </section>
